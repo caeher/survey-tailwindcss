@@ -1,0 +1,34 @@
+.navbar {
+    @apply px-3;
+}
+
+.navbar-fluid {
+    @apply flex justify-between items-center flex-nowrap;
+}
+
+.navbar .brand {
+    @apply hidden md:block;
+}
+
+.navbar .menu {
+    @apply flex justify-end items-center flex-wrap;
+}
+
+.menu-form button {
+    @apply p-3;
+}
+.menu-form .search {
+    @apply !bg-white;
+    @apply rounded-md;
+    @apply border-2 border-transparent;
+    /* @apply active:outline active:outline-blue-600; */
+    /* @apply focus:outline focus:outline-blue-600; */
+}
+.menu-form .search:focus-within {
+    @apply border-2 border-blue-500;
+}
+
+.menu-form .search input {
+    @apply p-2;
+    @apply focus:outline-none;
+}
