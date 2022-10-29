@@ -5,9 +5,9 @@ Todo list app with express, mongodb, handlebars, tailwincss
 # clone
 
 ```
-git clone gh repo clone caeher/node-todo-list todo-list
+git clone https://github.com/caeher/survey-tailwindcss.git survey
 
-cd todo-list
+cd survey
 
 npm install
 ```
