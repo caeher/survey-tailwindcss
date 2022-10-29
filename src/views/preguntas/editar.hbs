@@ -1,0 +1,76 @@
+<div class="container sm:container md:container lg:container mx-auto p-6">
+  <div class="bg-white p-6 shadow rounded">
+    <form action="/preguntas" method="POST">
+      <div class="flex justify-between">
+        <div>
+          <a
+            class="px-3 py-2 bg-red-500 rounded shadow text-white"
+            href="/preguntas"
+          >Atras</a>
+        </div>
+        <div>
+          <h1>Crear pregunta</h1>
+        </div>
+        <div>
+          <button
+            class="px-3 py-2 bg-blue-500 rounded shadow text-white"
+            type="submit"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+        <div class="flex items-center mt-5">
+            <label
+                class="block mr-3" 
+                for="titulo">Pregunta</label>
+            <input 
+                id="titulo"
+                class="p-2 border block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                type="text"
+                name="title"
+                placeholder="Titulo de la pregunta"
+                    value="{{ dato.title }}">
+        </div>
+        <div class="flex items-center mt-5">
+            <label 
+                class="block mr-3"
+                for="tipo">Tipo de respuesta</label>
+            <select 
+                class="p-2 border relative block w-full rounded border-gray-300 bg-transparent focus:z-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                name="tipoR" id="tipo"
+                onchange="cambiarPregunta(this)">
+                <option value="*" selected>Seleccionar opcion</option>
+                <option value="fecha">Fecha</option>
+                <option value="hora">Hora</option>
+                <option value="respuesta-corta">Respuesta corta</option>
+                <option value="respuesta-larga">Respuesta larga</option>
+                <option value="opcion-unica">Opcion unica</option>
+                <option value="opcion-multiple">Opcion multiple</option>
+            </select>
+        </div>
+        <div id="RDOM" class="px-6 py-12">
+            {{#if (equalString dato.tipoR "opcion-unica")}}
+                <div id="radio">
+                    <div class="cursor-pointer inline-block px-3 py-2 bg-blue-500 text-white rounded shadow" onclick="resetRadio()">Reset</div>
+                    <div class="cursor-pointer inline-block px-3 py-2 ml-5 bg-green-500 text-white rounded shadow" onclick="insertRadio()">Agregar</div>
+                    {{#each dato.respuestas as |respuesta|}}
+                        <div class="my-3 flex g-1">
+                        <input type="radio" value="valor" name="respuesta" />
+                        <input class="ml-3 p-2 border block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" type="text" name="respuestaText" value="{{ respuesta }}" placeholder="Valor del radiobutton" >
+                    </div>
+                    
+                    {{/each}}        
+                </div>
+            {{/if}}
+            {{#if (equalString dato.tipoR "fecha")}}
+                {{#each dato.respuestas}}
+                    <input type="date" value="{{ this }}">
+                {{/each}}
+            {{/if}}
+        </div>
+    </form>
+  </div>
+</div>
+
+<script src="/static/preguntas.js"></script>

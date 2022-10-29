@@ -1,7 +1,9 @@
-import {Router} from "express";
+import {application, Router} from "express";
 // import * as style from "../../dist/assets/css/app.css";
 import userRouter from "./user.routes";
 import authRouter from "./auth.routes";
+import respuestasRouter from "./respuestas";
+import preguntasRouter from "./preguntas.routes";
 const router = Router();
 
 
@@ -16,9 +18,8 @@ router.get("/", (req, res) => {
 
 
 router.use("/user", userRouter);
+router.use("/respuestas", respuestasRouter);
+router.use("/preguntas", preguntasRouter);
 
-// router.get("*", (req, res) => {
-//     res.redirect("/");
-// });
 
 export default router;

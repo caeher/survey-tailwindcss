@@ -7,10 +7,33 @@
     <title>Document</title>
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="bg-slate-100">
 
-    {{> navbar }}
-    {{{ body }}}
+    {{!-- {{> navbar }} --}}
+    <div class="min-h-screen">
+        {{{ body }}}
+    </div>
+    {{!-- {{> footer }} --}}
+    <script>
+
+    function generatePDF() {
+        const element = document.getElementById('chartjs');
+		// Choose the element and save the PDF for our user.
+		html2pdf().from(element).set({
+            margin: 1,
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        }).toPdf().output('blob').then(data => {
+            let url = URL.createObjectURL(data);
+            window.open(url);
+        });
+    }
+</script>
 </body>
 </html>

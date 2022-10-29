@@ -1,0 +1,38 @@
+
+<div class="bg-gradient-to-t bg-"></div>
+<div class="container sm:container md:container lg:container mx-auto p-6">
+    <div class="bg-white rounded shadow-sm p-6">
+        <div class="flex justify-between pb-6 mb-6 border-b">
+            <div><p class="h4">Resumen</p></div>
+            <button type="button" 
+                class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" 
+                onclick="generatePDF()">Exportar</button>
+        </div>
+        
+        <div id="chartjs" class="bg-white p-6">
+            <h1 class="text-2xl mb-6 font-bold text-center">{{ data.name }}</h1>
+            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus natus ab ad modi cum quia ratione vero eius excepturi? Excepturi, nisi? Earum ipsa quod maxime doloremque iusto maiores ducimus quas!</p>
+            {{#each data.secciones as |seccion|}}
+                <div class="mt-6">
+                    <h2 class="text-xl font-semibold text-center mb-6">{{ seccion.name }}</h2>
+                    <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero architecto explicabo quibusdam odio veniam rerum commodi mollitia ratione laboriosam impedit repellat reiciendis deserunt.</p>
+                    {{#each seccion.preguntas as |pregunta|}}
+                        <div class="mt-6">
+                            <p>{{ pregunta.quiz }}</p>
+                            <div>
+                                {{#each (respuestas pregunta.answers)}}
+                                    <div>{{ @key }}</div>
+                                {{/each}}
+                                <div class="w-1/2">
+                                    {{> chart options=(chart (respuestas pregunta.answers) (typeChart)) id=(random 10) w="400" h="400"}}
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
